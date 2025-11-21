@@ -1,9 +1,25 @@
-
 import React from 'react';
 import { Star, Facebook, Instagram, Linkedin } from 'lucide-react';
 import { REWARD_STEPS } from '../constants';
 
 const MainContent: React.FC = () => {
+  
+  const handleStartReview = () => {
+    try {
+      // @ts-ignore
+      if (typeof window._di === 'function') {
+        // @ts-ignore
+        window._di();
+      } else {
+        console.warn("Content locker function _di is not defined yet. Script might be blocked or loading.");
+        // Optional: Retry or alert user if critical
+        // alert("Please wait for the page to fully load.");
+      }
+    } catch (error) {
+      console.error("Error opening content locker:", error);
+    }
+  };
+
   return (
     <div className="w-full max-w-4xl mx-auto flex flex-col items-center px-4 py-2 md:py-6 h-full justify-between md:justify-start">
       
@@ -87,11 +103,9 @@ const MainContent: React.FC = () => {
       {/* BOTTOM SECTION: Buttons & Footer */}
       <div className="flex flex-col items-center w-full pb-2 md:pb-0">
         {/* CTA Button */}
-        <a 
-          href="https://trkfy.org/aff_c?offer_id=365&aff_id=161682"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group relative overflow-hidden bg-gradient-to-r from-[#d62828] to-[#c1121f] hover:from-[#e63946] hover:to-[#d90429] text-white font-bold py-2.5 md:py-3.5 px-8 md:px-12 rounded-full shadow-[0_4px_20px_rgba(214,40,40,0.4)] transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-[0_6px_25px_rgba(214,40,40,0.6)] active:scale-95 flex items-center gap-2 border-t border-white/20 z-10 shrink-0 mt-2 md:mt-6 text-decoration-none"
+        <button 
+          onClick={handleStartReview}
+          className="group relative overflow-hidden bg-gradient-to-r from-[#d62828] to-[#c1121f] hover:from-[#e63946] hover:to-[#d90429] text-white font-bold py-2.5 md:py-3.5 px-8 md:px-12 rounded-full shadow-[0_4px_20px_rgba(214,40,40,0.4)] transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-[0_6px_25px_rgba(214,40,40,0.6)] active:scale-95 flex items-center gap-2 border-t border-white/20 z-10 shrink-0 mt-2 md:mt-6 cursor-pointer"
         >
           <Star size={12} className="text-yellow-300 fill-yellow-300 animate-[pulse_2s_infinite] md:w-3.5 md:h-3.5" />
           <span className="tracking-wider text-xs md:text-base">START REVIEW →</span>
@@ -101,7 +115,7 @@ const MainContent: React.FC = () => {
           <div className="absolute inset-0 rounded-full overflow-hidden">
             <div className="absolute top-0 left-[-100%] w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-25deg] group-hover:animate-[shimmer_1s_infinite]"></div>
           </div>
-        </a>
+        </button>
 
         {/* Sub-CTA Text */}
         <p className="text-[9px] md:text-[10px] text-gray-400 italic mt-2 md:mt-3 mb-2 md:mb-6 opacity-80 z-10 shrink-0">
