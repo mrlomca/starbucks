@@ -5,7 +5,7 @@ export const REWARD_STEPS: Step[] = [
   { id: 1, text: 'Click the "Start Review" button' },
   { id: 2, text: 'Enter your email and basic details' },
   { id: 3, text: 'Answer the required questions' },
-  { id: 4, text: 'Complete 3-5 partner offers' },
+  { id: 4, text: 'Complete 2 partner offers' },
   { id: 5, text: 'Receive your STARBUCKS gift card' },
 ];
 
